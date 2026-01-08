@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Svenska Läraren - Apprendre le Suédois</title>
+    <meta name="description"
+        content="Application d'apprentissage du suédois avec vocabulaire, grammaire et quiz interactifs">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🇸🇪</span>
+                <h1>Svenska Läraren</h1>
+            </div>
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-section="vocabulary">
+                    <span class="tab-icon">📚</span>
+                    <span class="tab-text">Vocabulaire</span>
+                </button>
+                <button class="nav-tab" data-section="grammar">
+                    <span class="tab-icon">📖</span>
+                    <span class="tab-text">Grammaire</span>
+                </button>
+                <button class="nav-tab" data-section="quiz">
+                    <span class="tab-icon">✏️</span>
+                    <span class="tab-text">Quiz</span>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Vocabulary Section -->
+            <section id="vocabulary" class="section active">
+                <div class="section-header">
+                    <h2>Vocabulaire</h2>
+                    <div class="level-selector">
+                        <button class="level-btn active" data-level="niveau2">Niveau 2</button>
+                        <button class="level-btn" data-level="niveau3">Niveau 3</button>
+                    </div>
+                </div>
+
+                <div class="chapter-selector">
+                    <label for="chapter-select">Chapitre :</label>
+                    <select id="chapter-select" class="chapter-dropdown">
+                        <!-- Chapters populated by JS -->
+                    </select>
+                </div>
+
+                <div class="vocab-controls">
+                    <button id="mode-toggle" class="control-btn">
+                        <span>Mode: SV → FR</span>
+                    </button>
+                    <button id="shuffle-btn" class="control-btn">
+                        <span>🔀 Mélanger</span>
+                    </button>
+                </div>
+
+                <div class="flashcard-container">
+                    <div class="flashcard" id="flashcard">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <p class="flashcard-word" id="word-front">Välkommen!</p>
+                                <span class="flashcard-hint">Cliquez pour retourner</span>
+                            </div>
+                            <div class="flashcard-back">
+                                <p class="flashcard-translation" id="word-back">Bienvenue!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard-nav">
+                        <button id="prev-card" class="nav-btn">← Précédent</button>
+                        <span class="card-counter"><span id="current-card">1</span> / <span
+                                id="total-cards">1</span></span>
+                        <button id="next-card" class="nav-btn">Suivant →</button>
+                    </div>
+
+                    <div class="card-actions">
+                        <button id="mark-learned" class="action-btn learned">✓ Appris</button>
+                        <button id="mark-review" class="action-btn review">↻ À revoir</button>
+                    </div>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="vocab-progress"></div>
+                </div>
+                <p class="progress-text"><span id="learned-count">0</span> mots appris sur <span
+                        id="chapter-total">0</span></p>
+            </section>
+
+            <!-- Grammar Section - New Lesson-Based UI -->
+            <section id="grammar" class="section">
+                <div class="grammar-layout">
+                    <!-- Sidebar with topics -->
+                    <aside class="grammar-sidebar">
+                        <div class="sidebar-header">
+                            <h2>📖 Grammaire</h2>
+                            <input type="search" id="grammar-search" class="search-input" placeholder="Rechercher...">
+                        </div>
+                        <nav class="grammar-nav" id="grammar-nav">
+                            <!-- Categories and topics populated by JS -->
+                        </nav>
+                    </aside>
+
+                    <!-- Lesson content area -->
+                    <article class="lesson-content" id="lesson-content">
+                        <div class="lesson-welcome">
+                            <h2>📚 Svenska Minigrammatik</h2>
+                            <p>Bienvenue dans la section grammaire ! Sélectionnez un sujet dans le menu à gauche pour
+                                commencer.</p>
+                            <div class="lesson-categories-preview">
+                                <div class="category-card" data-category="pronoms">
+                                    <span class="category-icon">👤</span>
+                                    <h3>Pronoms</h3>
+                                    <p>Sujets, objets, possessifs...</p>
+                                </div>
+                                <div class="category-card" data-category="verbes">
+                                    <span class="category-icon">⚡</span>
+                                    <h3>Verbes</h3>
+                                    <p>Conjugaison, temps, modaux...</p>
+                                </div>
+                                <div class="category-card" data-category="substantifs">
+                                    <span class="category-icon">📦</span>
+                                    <h3>Substantifs</h3>
+                                    <p>Genre, nombre, déclinaison...</p>
+                                </div>
+                                <div class="category-card" data-category="adjectifs">
+                                    <span class="category-icon">🎨</span>
+                                    <h3>Adjectifs</h3>
+                                    <p>Accord, comparatifs...</p>
+                                </div>
+                                <div class="category-card" data-category="syntaxe">
+                                    <span class="category-icon">🔗</span>
+                                    <h3>Syntaxe</h3>
+                                    <p>Ordre des mots, conjonctions...</p>
+                                </div>
+                                <div class="category-card" data-category="expressions">
+                                    <span class="category-icon">💬</span>
+                                    <h3>Expressions</h3>
+                                    <p>Temps, lieu, comparaisons...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section id="quiz" class="section">
+                <div class="section-header">
+                    <h2>Quiz</h2>
+                    <div class="quiz-score">
+                        Score: <span id="quiz-score">0</span> / <span id="quiz-total">0</span>
+                    </div>
+                </div>
+
+                <div class="quiz-setup" id="quiz-setup">
+                    <h3>Configuration du Quiz</h3>
+                    <div class="quiz-options">
+                        <div class="option-group">
+                            <label>Niveau :</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="quiz-level" value="niveau2" checked> Niveau 2</label>
+                                <label><input type="radio" name="quiz-level" value="niveau3"> Niveau 3</label>
+                                <label><input type="radio" name="quiz-level" value="both"> Les deux</label>
+                            </div>
+                        </div>
+                        <div class="option-group">
+                            <label>Type :</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="quiz-type" value="multiple" checked> Choix
+                                    multiple</label>
+                                <label><input type="radio" name="quiz-type" value="typing"> Écriture</label>
+                            </div>
+                        </div>
+                        <div class="option-group">
+                            <label>Nombre de questions :</label>
+                            <select id="quiz-count" class="chapter-dropdown">
+                                <option value="10">10 questions</option>
+                                <option value="20" selected>20 questions</option>
+                                <option value="50">50 questions</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="start-quiz" class="start-quiz-btn">Commencer le Quiz</button>
+                </div>
+
+                <div class="quiz-game" id="quiz-game" style="display: none;">
+                    <div class="quiz-progress">
+                        <div class="quiz-progress-bar">
+                            <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
+                        </div>
+                        <span id="quiz-question-num">1</span> / <span id="quiz-question-total">20</span>
+                    </div>
+
+                    <div class="quiz-question-card">
+                        <p class="quiz-instruction" id="quiz-instruction">Traduisez en français :</p>
+                        <h3 class="quiz-word" id="quiz-word">hund</h3>
+                    </div>
+
+                    <div class="quiz-answers" id="quiz-answers">
+                        <!-- Answers populated by JS -->
+                    </div>
+
+                    <div class="quiz-typing" id="quiz-typing" style="display: none;">
+                        <input type="text" id="typing-answer" class="typing-input" placeholder="Votre réponse...">
+                        <button id="check-typing" class="control-btn">Vérifier</button>
+                    </div>
+
+                    <div class="quiz-feedback" id="quiz-feedback" style="display: none;">
+                        <p id="feedback-text"></p>
+                        <button id="next-question" class="control-btn">Question suivante</button>
+                    </div>
+                </div>
+
+                <div class="quiz-results" id="quiz-results" style="display: none;">
+                    <h3>🎉 Quiz terminé !</h3>
+                    <div class="results-score">
+                        <span id="final-score">0</span> / <span id="final-total">20</span>
+                    </div>
+                    <p class="results-percentage" id="results-percentage">0%</p>
+                    <p class="results-message" id="results-message"></p>
+                    <button id="restart-quiz" class="start-quiz-btn">Recommencer</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Svenska Läraren - Lycka till med svenskan! 🇸🇪</p>
+        </footer>
+    </div>
+
+    <script src="vocabulary-data.js"></script>
+    <script src="grammar-data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
