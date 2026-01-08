@@ -1365,6 +1365,413 @@ const grammarData = [
                 <p class="french">→ Que tu es mignon(ne) !</p>
             </div>
         `
+    },
+    {
+        id: 41,
+        category: 'verbes',
+        title: 'Passiv form (-s)',
+        content: `
+            <p>Il existe deux manières de former le passif en suédois, mais la plus courante est la forme en <strong>-s</strong>.</p>
+            
+            <h3>Formation</h3>
+            <p>On ajoute un <strong>-s</strong> à la forme active du verbe :</p>
+            <ul>
+                <li>Infinitif : stänga → stängas (être fermé)</li>
+                <li>Présent : stänger → stängs (est fermé)</li>
+                <li>Passé : stängde → stängdes (fut/était fermé)</li>
+                <li>Supin : stängt → stängts (a été fermé)</li>
+            </ul>
+            
+            <div class="example-box">
+                <p class="swedish">Huset <strong>målas</strong> av målaren.</p>
+                <p class="french">→ La maison est peinte par le peintre.</p>
+            </div>
+            <div class="example-box">
+                <p class="swedish">Dörren <strong>öppnas</strong> klockan åtta.</p>
+                <p class="french">→ La porte est ouverte (s'ouvre) à huit heures.</p>
+            </div>
+
+            <p>L'autre forme utilise <strong>bli</strong> + participe passé :</p>
+            <div class="example-box">
+                <p class="swedish">Huset <strong>blir målat</strong>.</p>
+                <p class="french">→ La maison devient peinte.</p>
+            </div>
+        `
+    },
+    {
+        id: 42,
+        category: 'verbes',
+        title: 'Presens particip (Participe présent)',
+        content: `
+            <p>Le participe présent s'utilise souvent comme adjectif (un homme <em>riant</em>).</p>
+            
+            <h3>Formation</h3>
+            <p><strong>-ande</strong> : Pour les verbes dont l'infinitif se termine par <strong>-a</strong> (Groupes 1, 2, 4).</p>
+            <ul>
+                <li>tala → talande (parlant)</li>
+                <li>arbeta → arbetande (travaillant)</li>
+                <li>skriva → skrivande (écrivant)</li>
+            </ul>
+
+            <p><strong>-ende</strong> : Pour les verbes dont l'infinitif se termine par une autre voyelle (Groupe 3).</p>
+            <ul>
+                <li>bo → boende (habitant/résidant)</li>
+                <li>gå → gående (marchant/piéton)</li>
+                <li>le → leende (souriant)</li>
+            </ul>
+
+            <div class="example-box">
+                <p class="swedish">En <strong>sovande</strong> björn.</p>
+                <p class="french">→ Un ours dormant.</p>
+            </div>
+        `
+    },
+    {
+        id: 43,
+        category: 'verbes',
+        title: 'Konditional (Conditionnel)',
+        content: `
+            <p>Pour exprimer une hypothèse ("je ferais") ou le futur du passé ("je ferais" dans "il a dit qu'il ferait").</p>
+            
+            <h3>Formation</h3>
+            <p><strong>Skulle + Infinitif</strong></p>
+            
+            <div class="example-box">
+                <p class="swedish">Om jag var rik, <strong>skulle</strong> jag <strong>köpa</strong> en ö.</p>
+                <p class="french">→ Si j'étais riche, j'<strong>achèterais</strong> une île.</p>
+            </div>
+            
+            <p>Note : Dans la proposition 'Si' (Om...), on utilise le prétérit (var, hade, gjorde).</p>
+        `
+    },
+    {
+        id: 44,
+        category: 'syntaxe',
+        title: 'Konjunktioner (Länkar dubbla)',
+        content: `
+            <p>Certaines conjonctions vont par paire.</p>
+            
+            <ul>
+                <li><strong>Både ... och</strong> (Et ... et / À la fois ... et)
+                    <br><em>Jag gillar både kaffe och te.</em> (J'aime et le café et le thé.)
+                </li>
+                <li><strong>Antingen ... eller</strong> (Soit ... soit)
+                    <br><em>Du får antingen äta upp eller gå från bordet.</em> (Tu dois soit finir ton assiette, soit quitter la table.)
+                </li>
+                <li><strong>Varken ... eller</strong> (Ni ... ni)
+                    <br><em>Han röker varken eller dricker.</em> (Il ne fume ni ne boit.)
+                    <br><em>Obs: "inte" est inclus dans le sens de varken.</em>
+                </li>
+                <li><strong>Ju ... desto</strong> (Plus ... plus)
+                    <br><em>Ju mer jag tränar, desto starkare blir jag.</em> (Plus je m'entraîne, plus je deviens fort.)
+                </li>
+            </ul>
+        `
+    },
+    {
+        id: 45,
+        category: 'syntaxe',
+        title: 'Presentering (Det + verb)',
+        content: `
+            <p>En suédois, quand on introduit un sujet indéfini nouveau dans la conversation, on utilise souvent une construction avec <strong>Det</strong> (sujet formel) + verbe + le sujet réel.</p>
+            
+            <div class="example-box">
+                <p class="swedish"><strong>Det sitter</strong> en fågel på taket.</p>
+                <p class="french">→ Il y a un oiseau sur le toit. (Lit: Il est assis un oiseau...)</p>
+            </div>
+            
+            <p>On n'aime pas commencer une phrase par un sujet indéfini ("En fågel sitter..."). On préfère la présentation avec "Det".</p>
+            
+            <p>Verbes de position courants :</p>
+            <ul>
+                <li><strong>Det sitter...</strong> (assis)</li>
+                <li><strong>Det står...</strong> (debout/posé)</li>
+                <li><strong>Det ligger...</strong> (couché/situé)</li>
+                <li><strong>Det hänger...</strong> (suspendu)</li>
+                <li><strong>Det finns...</strong> (il y a / il existe)</li>
+            </ul>
+        `
+    },
+    {
+        id: 46,
+        category: 'adjectifs',
+        title: 'Adjektiv vs Adverb',
+        content: `
+            <p><strong>Adjektiv</strong> : Décrit un substantif ou un pronom (être).</p>
+            <p><strong>Adverb</strong> : Décrit un verbe, un adjectif ou une phrase entière.</p>
+            
+            <p>L'adverbe de manière (comment on fait quelque chose) est souvent identique à la forme <strong>neutre (-t)</strong> de l'adjectif.</p>
+            
+            <div class="example-box">
+                <p class="swedish">Hon är <strong>vacker</strong>. (Adj - décrit 'Hon')</p>
+                <p class="french">→ Elle est belle.</p>
+                <hr>
+                <p class="swedish">Hon sjunger <strong>vackert</strong>. (Adv - décrit 'sjunger')</p>
+                <p class="french">→ Elle chante bien/joliment.</p>
+            </div>
+             <div class="example-box">
+                <p class="swedish">Bilen är <strong>snabb</strong>.</p>
+                <p class="french">→ La voiture est rapide.</p>
+                <hr>
+                <p class="swedish">Han kör <strong>snabbt</strong>.</p>
+                <p class="french">→ Il conduit vite.</p>
+            </div>
+        `
+    },
+    {
+        id: 47,
+        category: 'expressions',
+        title: 'Prépositions de temps (Tidsprepositioner)',
+        content: `
+            <h3>Hur ofta? (Fréquence)</h3>
+            <ul>
+                <li><strong>om</strong> : dagen, året, dygnet (jour, an, 24h)
+                    <br><em>Oscar springer en gång om dagen.</em>
+                </li>
+                <li><strong>i</strong> : veckan, timmen, månaden, minuten
+                    <br><em>Maria tränar tre gånger i veckan.</em>
+                </li>
+            </ul>
+
+            <h3>Hur länge? (Durée)</h3>
+            <ul>
+                <li><strong>i</strong> (ou rien)
+                    <br><em>Varje gång tränar hon (i) två timmar ungefär.</em>
+                </li>
+            </ul>
+
+            <h3>Hur snabbt? (Vitesse)</h3>
+            <ul>
+                <li><strong>på</strong>
+                    <br><em>Hon springer snabbt, fem kilometer på 20 minuter.</em>
+                </li>
+            </ul>
+
+            <h3>När? (Quand)</h3>
+            <table>
+                <tr><th>Temps</th><th>Préposition</th><th>Exemple</th></tr>
+                <tr><td>Passé (Preteritum)</td><td><strong>för ... sedan</strong></td><td>Mats och Anna började dansa tango för ett år sedan. (il y a un an)</td></tr>
+                <tr><td>Futur (Presens/Futurum)</td><td><strong>om</strong></td><td>Om en månad ska de resa till Argentina. (dans un mois)</td></tr>
+            </table>
+
+            <div class="rule-box">
+                <p><strong>Om 3 år</strong> = dans 3 ans // <strong>I 3 år</strong> = pendant 3 ans</p>
+                <p><strong>För 1 år sedan</strong> = il y a un an</p>
+                <p><strong>På en timme</strong> = en une heure (temps pour accomplir)</p>
+                <p><strong>Om dygnet</strong> = par 24h</p>
+                <p><strong>Om året</strong> = par an</p>
+            </div>
+        `
+    },
+    {
+        id: 48,
+        category: 'syntaxe',
+        title: 'Sambandsord (Mots de liaison)',
+        content: `
+            <p>Les <em>sambandsord</em> relient les phrases et montrent leur connexion (contraste, explication, etc.). <em>Dock</em> est plus souvent utilisé à l'écrit. On ne commence JAMAIS une phrase avec <em>nämligen</em> et rarement avec <em>dock</em>.</p>
+            
+            <h3>Nämligen (en effet, c'est-à-dire)</h3>
+            <div class="example-box">
+                <p class="swedish">Huggormar biter sällan människor. Ormarna är nämligen rädda för människor.</p>
+                <p class="french">→ Les vipères mordent rarement les gens. Les serpents sont en effet effrayés par les gens.</p>
+            </div>
+
+            <h3>Dock (cependant, toutefois)</h3>
+            <div class="example-box">
+                <p class="swedish">Ett huggormsbett kan dock vara mycket farligt.</p>
+                <p class="french">→ Une morsure de vipère peut cependant être très dangereuse.</p>
+            </div>
+
+            <h3>Därför (c'est pourquoi)</h3>
+            <div class="example-box">
+                <p class="swedish">Många är rädda och vågar därför inte gå ut.</p>
+                <p class="french">→ Beaucoup ont peur et n'osent donc pas sortir.</p>
+            </div>
+
+            <h3>Däremot (par contre, en revanche)</h3>
+            <div class="example-box">
+                <p class="swedish">Man kan däremot vaccinera sig mot TBE.</p>
+                <p class="french">→ On peut par contre se faire vacciner contre la TBE.</p>
+            </div>
+        `
+    },
+    {
+        id: 49,
+        category: 'syntaxe',
+        title: 'Vilket – Något som',
+        content: `
+            <p><strong>Vilket</strong> et <strong>något som</strong> renvoient à une phrase entière. Ils peuvent être sujet dans une P2. On les utilise principalement en langage soutenu.</p>
+            
+            <div class="example-box">
+                <p class="swedish">Kristin kan kinesiska, <strong>vilket/något som</strong> är bra för hennes karriär.</p>
+                <p class="french">→ Kristin sait parler chinois, ce qui est bon pour sa carrière.</p>
+            </div>
+            <div class="example-box">
+                <p class="swedish">Eleverna kommer alltid för sent, <strong>vilket/något som</strong> irriterar läraren.</p>
+                <p class="french">→ Les élèves arrivent toujours en retard, ce qui irrite le professeur.</p>
+            </div>
+            <div class="example-box">
+                <p class="swedish">Oljepriset har gått upp, <strong>vilket/något som</strong> gör att det blir dyrare att resa.</p>
+                <p class="french">→ Le prix du pétrole a monté, ce qui rend les voyages plus chers.</p>
+            </div>
+        `
+    },
+    {
+        id: 50,
+        category: 'expressions',
+        title: 'Hos, Till eller På',
+        content: `
+            <h3>Position (Vara...)</h3>
+            <ul>
+                <li><strong>Hos</strong> : personne (frisören, doktorn, tandläkaren, Peter)</li>
+            </ul>
+
+            <h3>Destination (Gå/åka/ringa...)</h3>
+            <ul>
+                <li><strong>Till</strong> : personne/lieu (frisören, doktorn, tandläkaren, stan, Peter, polisen)</li>
+            </ul>
+
+            <h3>Aktivitet (Gå...)</h3>
+            <p>Accent sur <strong>l'activité</strong> et non l'endroit.</p>
+            <ul>
+                <li><strong>På</strong> : bio, teater, opera, nattklubb, museum, krogen</li>
+            </ul>
+
+            <h3>Transport (Gå/åka/flyga...)</h3>
+            <p>Accent sur le <strong>transport</strong> et non sur l'activité.</p>
+            <ul>
+                <li><strong>Till</strong> : bion, teatern, operan, nattklubben, museet</li>
+            </ul>
+
+            <div class="example-box">
+                <p class="swedish">Igår när jag var hos Frida... (Position)</p>
+                <p class="french">→ Hier quand j'étais chez Frida...</p>
+            </div>
+            <div class="example-box">
+                <p class="swedish">...frågade hon om jag ville gå på konsert... (Activité)</p>
+                <p class="french">→ ...elle a demandé si je voulais aller au concert...</p>
+            </div>
+            <div class="example-box">
+                <p class="swedish">Sedan ringde vi till Elsa... (Destination)</p>
+                <p class="french">→ Ensuite nous avons appelé Elsa...</p>
+            </div>
+            <div class="example-box">
+                <p class="swedish">Hon var hos frisören... (Position)</p>
+                <p class="french">→ Elle était chez le coiffeur...</p>
+            </div>
+        `
+    },
+    {
+        id: 51,
+        category: 'adjectifs',
+        title: 'Ser ... ut (Avoir l\'air)',
+        content: `
+            <h3>Ser + adjectif + ut</h3>
+            <p>Il faut accorder l'adjectif !</p>
+            
+            <div class="example-box">
+                <p class="swedish">Hon <strong>ser trevlig ut</strong>.</p>
+                <p class="french">→ Elle a l'air sympa.</p>
+            </div>
+            <div class="example-box">
+                <p class="swedish">De <strong>ser trevliga ut</strong>.</p>
+                <p class="french">→ Ils ont l'air sympas.</p>
+            </div>
+
+            <p><strong>Règle générale vs Spécifique :</strong></p>
+            <div class="example-box">
+                <p class="swedish">Glass är <strong>gott</strong>. (En général)</p>
+                <p class="french">→ La glace, c'est bon.</p>
+            </div>
+            <div class="example-box">
+                <p class="swedish">Den här glassen är <strong>god</strong>. (Cette glace en particulier)</p>
+                <p class="french">→ Cette glace est bonne.</p>
+            </div>
+        `
+    },
+    {
+        id: 52,
+        category: 'syntaxe',
+        title: 'Subjunktioner - Détails',
+        content: `
+            <h3>Temps</h3>
+            <ul>
+                <li><strong>När</strong> : Quand (passé spécifique)
+                    <br><em>Han var lite nervös när han gick till skolan.</em>
+                </li>
+                <li><strong>Medan</strong> : Pendant que
+                    <br><em>Medan han pluggade, lyssnade han på musik.</em>
+                </li>
+                <li><strong>Innan</strong> : Avant que
+                    <br><em>Han var färdig 15 minuter innan provtiden var slut.</em>
+                </li>
+                <li><strong>Tills</strong> : Jusqu'à ce que
+                    <br><em>Så höll han på tills han kunde allt.</em>
+                </li>
+                <li><strong>(inte)...förrän</strong> : Pas...avant que
+                    <br><em>Han ville inte träna förrän han var helt frisk.</em>
+                </li>
+            </ul>
+
+            <h3>Comment</h3>
+            <ul>
+                <li><strong>Utan att</strong> (+ infinitif) : Sans
+                    <br><em>Han gör marinaden utan att titta i recept.</em>
+                </li>
+                <li><strong>Genom att</strong> (+ infinitif) : En / Par le moyen de
+                    <br><em>Han lärde sig alla namn genom att associera till olika saker.</em>
+                </li>
+            </ul>
+
+            <h3>Contraste</h3>
+            <ul>
+                <li><strong>Även om</strong> : Même si (Hypothèse)
+                    <br><em>Vi grillar även om det är dåligt väder.</em>
+                </li>
+                <li><strong>Trots att / fastän</strong> : Bien que / Malgré que (Réalité)
+                    <br><em>Trots att han var trött gick provet bra.</em>
+                </li>
+            </ul>
+
+            <h3>Condition</h3>
+            <ul>
+                <li><strong>Ifall</strong> : Au cas où / Si
+                    <br><em>Juliet, nu struntar jag i ifall du tror mig.</em>
+                </li>
+                <li><strong>Om</strong> : Si
+                    <br><em>Jag frågade om han ville följa med.</em>
+                </li>
+            </ul>
+
+            <h3>Cause</h3>
+            <ul>
+                <li><strong>Eftersom / Därför att</strong> : Parce que / Puisque
+                    <br><em>Eftersom jag är trött ska jag ta en tupplur.</em>
+                </li>
+            </ul>
+
+            <h3>Résultat</h3>
+            <ul>
+                <li><strong>Så att</strong> : De sorte que
+                    <br><em>Lägg biffarna i marinad så att de smakar gott.</em>
+                </li>
+            </ul>
+
+            <h3>Intention / But</h3>
+            <ul>
+                <li><strong>För att</strong> (+ infinitif) : Pour
+                    <br><em>Jag ringde för att fråga...</em>
+                </li>
+            </ul>
+
+            <div class="rule-box">
+                <strong>Règle de l'infinitif :</strong>
+                <p>On utilise <strong>för att / utan att / genom att + infinitif</strong> si c'est le <strong>même sujet</strong> dans la phrase principale et la subordonnée.</p>
+                <p><em>Lena åker till stan för att handla.</em></p>
+                <p><em>Olof svarade utan att tänka.</em></p>
+                <p><em>Michael lärde sig svenska genom att se svenska filmer.</em></p>
+            </div>
+        `
     }
 ];
 

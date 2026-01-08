@@ -34,6 +34,10 @@
                     <span class="tab-icon">✏️</span>
                     <span class="tab-text">Quiz</span>
                 </button>
+                <button class="nav-tab" data-section="stats">
+                    <span class="tab-icon">📊</span>
+                    <span class="tab-text">Stats</span>
+                </button>
             </nav>
         </header>
 
@@ -70,6 +74,7 @@
                         <div class="flashcard-inner">
                             <div class="flashcard-front">
                                 <p class="flashcard-word" id="word-front">Välkommen!</p>
+                                <p class="flashcard-example" id="word-example"></p>
                                 <span class="flashcard-hint">Cliquez pour retourner</span>
                             </div>
                             <div class="flashcard-back">
@@ -86,6 +91,7 @@
                     </div>
 
                     <div class="card-actions">
+                        <button id="mark-favorite" class="action-btn favorite">☆ Favori</button>
                         <button id="mark-learned" class="action-btn learned">✓ Appris</button>
                         <button id="mark-review" class="action-btn review">↻ À revoir</button>
                     </div>
@@ -167,12 +173,10 @@
                 <div class="quiz-setup" id="quiz-setup">
                     <h3>Configuration du Quiz</h3>
                     <div class="quiz-options">
-                        <div class="option-group">
-                            <label>Niveau :</label>
-                            <div class="radio-group">
-                                <label><input type="radio" name="quiz-level" value="niveau2" checked> Niveau 2</label>
-                                <label><input type="radio" name="quiz-level" value="niveau3"> Niveau 3</label>
-                                <label><input type="radio" name="quiz-level" value="both"> Les deux</label>
+                        <div class="option-group full-width">
+                            <label>Sélectionnez les chapitres à étudier :</label>
+                            <div id="quiz-chapter-selection" class="quiz-chapter-selection">
+                                <!-- Checkboxes populated by JS -->
                             </div>
                         </div>
                         <div class="option-group">
@@ -181,56 +185,177 @@
                                 <label><input type="radio" name="quiz-type" value="multiple" checked> Choix
                                     multiple</label>
                                 <label><input type="radio" name="quiz-type" value="typing"> Écriture</label>
+                                <label><input type="radio" name="quiz-type" value="flashcards"> Flashcards (SRS)</label>
+                                <label><input type="radio" name="quiz-type" value="pairs"> 🧩 Jeu de paires</label>
+                                <label><input type="radio" name="quiz-type" value="fill-blanks"> ✏️ Texte à
+                                    trous</label>
+                            </div>
+                            <div class="option-group" id="srs-options" style="display:none;">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="srs-due-only"> Réviser seulement les cartes dues
+                                </label>
+                            </div>
+                            <div class="option-group">
+                                <label>Direction :</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="quiz-direction" value="sv-fr" checked> SV →
+                                        FR</label>
+                                    <label><input type="radio" name="quiz-direction" value="fr-sv"> FR → SV</label>
+                                    <label><input type="radio" name="quiz-direction" value="random"> Aléatoire</label>
+                                </div>
+                            </div>
+                            <div class="option-group">
+                                <label>Nombre de questions :</label>
+                                <select id="quiz-count" class="chapter-dropdown">
+                                    <option value="10">10 questions</option>
+                                    <option value="20" selected>20 questions</option>
+                                    <option value="50">50 questions</option>
+                                    <option value="999">Toutes (Mode Cram)</option>
+                                </select>
+                            </div>
+                            <div class="option-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="chrono-mode"> ⏱️ Mode chrono
+                                </label>
+                                <select id="chrono-time" class="chapter-dropdown"
+                                    style="margin-left: 10px; display: none;">
+                                    <option value="10">10 secondes</option>
+                                    <option value="15" selected>15 secondes</option>
+                                    <option value="30">30 secondes</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="option-group">
-                            <label>Nombre de questions :</label>
-                            <select id="quiz-count" class="chapter-dropdown">
-                                <option value="10">10 questions</option>
-                                <option value="20" selected>20 questions</option>
-                                <option value="50">50 questions</option>
-                            </select>
+                        <button id="start-quiz" class="start-quiz-btn">Commencer le Quiz</button>
+                    </div>
+
+                    <div class="quiz-game" id="quiz-game" style="display: none;">
+                        <div class="quiz-progress">
+                            <div class="quiz-timer" id="quiz-timer" style="display: none;">
+                                <span class="timer-icon">⏱️</span>
+                                <span id="timer-value">15</span>s
+                            </div>
+                            <div class="quiz-progress-bar">
+                                <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
+                            </div>
+                            <span id="quiz-question-num">1</span> / <span id="quiz-question-total">20</span>
+                        </div>
+
+                        <div class="quiz-question-card">
+                            <p class="quiz-instruction" id="quiz-instruction">Traduisez en français :</p>
+                            <h3 class="quiz-word" id="quiz-word">hund</h3>
+
+                            <!-- SRS Flashcard Back -->
+                            <div id="quiz-flashcard-back"
+                                style="display: none; margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">
+                                <h3 class="quiz-word" id="quiz-answer-text" style="color: var(--text-secondary);">chien
+                                </h3>
+                            </div>
+                        </div>
+
+                        <!-- Pairs Game Container -->
+                        <div id="quiz-pairs-game" class="quiz-pairs-grid" style="display: none;">
+                            <!-- Cards will be injected here -->
+                        </div>
+
+                        <div class="quiz-answers" id="quiz-answers">
+                            <!-- Answers populated by JS -->
+                        </div>
+
+                        <div class="quiz-typing" id="quiz-typing" style="display: none;">
+                            <input type="text" id="typing-answer" class="typing-input" placeholder="Votre réponse...">
+                            <button id="check-typing" class="control-btn">Vérifier</button>
+                        </div>
+
+                        <!-- SRS Controls -->
+                        <div class="quiz-srs-controls" id="quiz-srs-controls" style="display: none;">
+                            <button id="srs-show-answer" class="start-quiz-btn">Voir la réponse</button>
+                            <div id="srs-rating-btns"
+                                style="display: none; gap: 10px; justify-content: center; margin-top: 10px;">
+                                <button class="srs-btn again" data-rating="1">🔴 Åter (Fail)</button>
+                                <button class="srs-btn hard" data-rating="2">🟡 Hårt (Hard)</button>
+                                <button class="srs-btn good" data-rating="3">🟢 Bra (Good)</button>
+                                <button class="srs-btn easy" data-rating="4">🔵 Lätt (Easy)</button>
+                            </div>
+                        </div>
+
+                        <div class="quiz-feedback" id="quiz-feedback" style="display: none;">
+                            <p id="feedback-text"></p>
+                            <button id="next-question" class="control-btn">Question suivante</button>
                         </div>
                     </div>
-                    <button id="start-quiz" class="start-quiz-btn">Commencer le Quiz</button>
-                </div>
 
-                <div class="quiz-game" id="quiz-game" style="display: none;">
-                    <div class="quiz-progress">
-                        <div class="quiz-progress-bar">
-                            <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
+                    <div class="quiz-results" id="quiz-results" style="display: none;">
+                        <h3>🎉 Quiz terminé !</h3>
+                        <div class="results-score">
+                            <span id="final-score">0</span> / <span id="final-total">20</span>
                         </div>
-                        <span id="quiz-question-num">1</span> / <span id="quiz-question-total">20</span>
+                        <p class="results-percentage" id="results-percentage">0%</p>
+                        <p class="results-message" id="results-message"></p>
+                        <button id="restart-quiz" class="start-quiz-btn">Recommencer</button>
                     </div>
+            </section>
 
-                    <div class="quiz-question-card">
-                        <p class="quiz-instruction" id="quiz-instruction">Traduisez en français :</p>
-                        <h3 class="quiz-word" id="quiz-word">hund</h3>
-                    </div>
-
-                    <div class="quiz-answers" id="quiz-answers">
-                        <!-- Answers populated by JS -->
-                    </div>
-
-                    <div class="quiz-typing" id="quiz-typing" style="display: none;">
-                        <input type="text" id="typing-answer" class="typing-input" placeholder="Votre réponse...">
-                        <button id="check-typing" class="control-btn">Vérifier</button>
-                    </div>
-
-                    <div class="quiz-feedback" id="quiz-feedback" style="display: none;">
-                        <p id="feedback-text"></p>
-                        <button id="next-question" class="control-btn">Question suivante</button>
+            <!-- Stats Section -->
+            <section id="stats" class="section">
+                <div class="section-header">
+                    <h2>📊 Statistiques</h2>
+                    <div class="streak-badge" id="streak-badge">
+                        <span class="streak-fire">🔥</span>
+                        <span id="streak-count">0</span> jours
                     </div>
                 </div>
 
-                <div class="quiz-results" id="quiz-results" style="display: none;">
-                    <h3>🎉 Quiz terminé !</h3>
-                    <div class="results-score">
-                        <span id="final-score">0</span> / <span id="final-total">20</span>
+                <div class="stats-grid">
+                    <!-- Progress Card -->
+                    <div class="stat-card">
+                        <div class="stat-icon">📚</div>
+                        <div class="stat-value" id="stat-words-learned">0</div>
+                        <div class="stat-label">Mots appris</div>
                     </div>
-                    <p class="results-percentage" id="results-percentage">0%</p>
-                    <p class="results-message" id="results-message"></p>
-                    <button id="restart-quiz" class="start-quiz-btn">Recommencer</button>
+
+                    <!-- Favorites Card -->
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-value" id="stat-favorites">0</div>
+                        <div class="stat-label">Favoris</div>
+                    </div>
+
+                    <!-- Quiz Score Card -->
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-value" id="stat-avg-score">--%</div>
+                        <div class="stat-label">Score moyen</div>
+                    </div>
+
+                    <!-- SRS Mastered Card -->
+                    <div class="stat-card">
+                        <div class="stat-icon">🧠</div>
+                        <div class="stat-value" id="stat-srs-mastered">0</div>
+                        <div class="stat-label">Cartes maîtrisées</div>
+                    </div>
+                </div>
+
+                <!-- Daily Goal -->
+                <div class="daily-goal-section">
+                    <h3>🎯 Objectif du jour</h3>
+                    <div class="goal-progress">
+                        <div class="goal-bar">
+                            <div class="goal-fill" id="goal-fill"></div>
+                        </div>
+                        <span id="goal-text">0 / 10 mots</span>
+                    </div>
+                </div>
+
+                <!-- Error History -->
+                <div class="error-history-section">
+                    <h3>⚠️ Mots difficiles</h3>
+                    <div id="error-list" class="error-list">
+                        <!-- Populated by JS -->
+                        <p class="empty-message">Aucune erreur enregistrée. Continuez à pratiquer !</p>
+                    </div>
+                    <button id="quiz-errors-btn" class="control-btn" style="margin-top: 15px; display: none;">
+                        ✏️ Quiz sur mes erreurs
+                    </button>
                 </div>
             </section>
         </main>
@@ -238,6 +363,12 @@
         <!-- Footer -->
         <footer class="footer">
             <p>Svenska Läraren - Lycka till med svenskan! 🇸🇪</p>
+            <div style="margin-top: 10px;">
+                <a href="rivstart_b1_b2.pdf" download
+                    style="color: var(--primary-blue); text-decoration: none; font-weight: bold; font-size: 0.9rem;">
+                    📚 Télécharger Rivstart B1+B2 (PDF)
+                </a>
+            </div>
         </footer>
     </div>
 
